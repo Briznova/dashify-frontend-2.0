@@ -1,0 +1,63 @@
+.loading {
+  display: flex;
+  min-height: 100px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #697188;
+  font-size: 14px;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #e4e8fb;
+  border-top-color: #566df1;
+  border-radius: 50%;
+  animation: spin .75s linear infinite;
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 10px 0;
+  padding: 12px 14px;
+  border: 1px solid #f0d7d4;
+  border-radius: 8px;
+  background: #fff8f6;
+  color: #a64e47;
+  font-size: 14px;
+}
+
+.error button {
+  min-height: 40px;
+  flex: 0 0 auto;
+  padding: 0 14px;
+  border: 1px solid #d5aaa4;
+  border-radius: 12px;
+  background: #fff;
+  color: #843e37;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color .16s ease, background .16s ease, box-shadow .16s ease;
+}
+
+.error button:hover {
+  border-color: #bd8078;
+  background: #fff0ed;
+  box-shadow: 0 2px 6px rgba(141, 69, 62, .12);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation-duration: 1.5s;
+  }
+}

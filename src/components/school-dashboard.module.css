@@ -1,0 +1,1039 @@
+.roleSelectLabel {
+  display: grid;
+  gap: 5px;
+  color: #81889a;
+  font-size: 12px;
+}
+
+.roleSelectLabel select {
+  min-width: 168px;
+  height: 34px;
+  padding: 0 9px;
+  border: 1px solid #e6e8f0;
+  border-radius: 6px;
+  background: #fff;
+  color: #4a5269;
+  font-size: 12px;
+}
+
+.pageActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.primaryButton {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 16px;
+  border: 1px solid #4058df;
+  border-radius: 12px;
+  background: #4058df;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(48, 72, 202, .18);
+  font-size: 14px;
+  font-weight: var(--weight-semibold);
+  transition: background .16s ease, box-shadow .16s ease, transform .16s ease;
+}
+
+.primaryButton:hover {
+  background: #3048ca;
+  box-shadow: 0 5px 12px rgba(48, 72, 202, .24);
+  transform: translateY(-1px);
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 13px;
+  margin-bottom: 16px;
+}
+
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(300px, .95fr);
+  gap: 14px;
+}
+
+.panel,
+.settingsCard {
+  min-width: 0;
+  padding: 17px;
+  border: 1px solid #e9ebf2;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.panelHeading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.panelHeading h2,
+.settingsCard h2 {
+  margin: 0;
+  color: #30364e;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.panelHeading p,
+.settingsCard > div > p {
+  margin: 5px 0 0;
+  color: #8b92a3;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.panelHeading > a {
+  flex: 0 0 auto;
+  color: #586ff0;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.panelHeading > a span {
+  margin-left: 3px;
+}
+
+.enrollmentSummary {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.enrollmentSummary > strong {
+  color: #30364e;
+  font-size: 21px;
+  letter-spacing: -.5px;
+}
+
+.enrollmentSummary > span:nth-child(2) {
+  color: #8a91a3;
+  font-size: 12px;
+}
+
+.positiveTag {
+  margin-left: auto;
+  color: #35956b;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.chart {
+  position: relative;
+  height: 165px;
+  margin-top: 10px;
+}
+
+.chartGrid {
+  position: absolute;
+  inset: 0 0 22px;
+  background: repeating-linear-gradient(to bottom, #f0f1f5 0, #f0f1f5 1px, transparent 1px, transparent 25%);
+}
+
+.chart svg {
+  position: absolute;
+  inset: 0 0 22px;
+  width: 100%;
+  height: calc(100% - 22px);
+  overflow: visible;
+}
+
+.chartMonths {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  color: #999faf;
+  font-size: 12px;
+}
+
+.approvalList,
+.eventList {
+  display: grid;
+  margin-top: 12px;
+}
+
+.approvalRow {
+  display: flex;
+  min-height: 53px;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid #f0f1f5;
+}
+
+.studentAvatar,
+.tablePerson > i {
+  display: grid;
+  width: 27px;
+  height: 27px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: #edf0ff;
+  color: #586bd0;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.approvalInfo {
+  display: grid;
+  min-width: 0;
+  flex: 1;
+  gap: 4px;
+}
+
+.approvalInfo strong {
+  overflow: hidden;
+  color: #474e64;
+  font-size: 12px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.approvalInfo span {
+  color: #979dae;
+  font-size: 12px;
+}
+
+.eventRow {
+  display: flex;
+  min-height: 54px;
+  align-items: center;
+  gap: 10px;
+  border-top: 1px solid #f0f1f5;
+}
+
+.eventDate {
+  display: grid;
+  width: 33px;
+  height: 36px;
+  flex: 0 0 auto;
+  align-content: center;
+  justify-items: center;
+  gap: 2px;
+  border-radius: 6px;
+  background: #f1f2ff;
+  color: #6b74ce;
+  font-size: 12px;
+}
+
+.eventDate strong {
+  font-size: 14px;
+}
+
+.eventRow > div {
+  display: grid;
+  min-width: 0;
+  flex: 1;
+  gap: 4px;
+}
+
+.eventRow > div strong {
+  overflow: hidden;
+  color: #474e64;
+  font-size: 12px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.eventRow > div span {
+  color: #979dae;
+  font-size: 12px;
+}
+
+.eventArrow {
+  color: #9da3b2;
+  font-size: 14px;
+}
+
+.quickLinks {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+  grid-column: 1 / -1;
+}
+
+.quickLinks > div {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 9px;
+  padding: 12px;
+  border: 1px solid #e9ebf2;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.quickIcon {
+  display: grid;
+  width: 29px;
+  height: 29px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 7px;
+  background: #eef2ff;
+  color: #566fe4;
+  font-size: 14px;
+}
+
+.quickViolet {
+  background: #f0edff;
+  color: #765fe0;
+}
+
+.quickGreen {
+  background: #eaf8f1;
+  color: #34946b;
+}
+
+.quickLinks > div > div {
+  display: grid;
+  min-width: 0;
+  flex: 1;
+  gap: 4px;
+}
+
+.quickLinks strong {
+  color: #444b61;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.quickLinks > div > div > span {
+  color: #9299aa;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.quickLinks a {
+  color: #7983d9;
+  font-size: 14px;
+}
+
+.stateMessage,
+.emptyState {
+  padding: 24px 12px;
+  color: #888fa1;
+  font-size: 13px;
+  text-align: center;
+}
+
+.errorState {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 10px 0;
+  padding: 11px 12px;
+  border: 1px solid #f0d7d4;
+  border-radius: 6px;
+  background: #fff8f6;
+  color: #a64e47;
+  font-size: 12px;
+}
+
+.errorState button,
+.outlineButton {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 14px;
+  border: 1px solid #cbd2e2;
+  border-radius: 12px;
+  background: #fff;
+  color: #39445e;
+  box-shadow: 0 1px 2px rgba(31, 40, 78, .06);
+  font-size: 14px;
+  font-weight: var(--weight-medium);
+  cursor: pointer;
+  transition: border-color .16s ease, background .16s ease, box-shadow .16s ease, color .16s ease, transform .16s ease;
+}
+
+.outlineButton:hover:not(:disabled),
+.errorState button:hover:not(:disabled) {
+  border-color: #9eace0;
+  background: #f5f7ff;
+  color: #344bc8;
+  box-shadow: 0 3px 8px rgba(48, 72, 202, .12);
+  transform: translateY(-1px);
+}
+
+.outlineButton:disabled,
+.errorState button:disabled {
+  opacity: .65;
+  cursor: wait;
+}
+
+.outlineButton > svg {
+  flex: 0 0 auto;
+}
+
+.refreshing {
+  animation: refreshSpin .8s linear infinite;
+}
+
+@keyframes refreshSpin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .refreshing {
+    animation-duration: 1.8s;
+  }
+}
+
+.tableScroll {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 650px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th {
+  font-family: var(--font-ui);
+  height: 37px;
+  color: #989faf;
+  font-size: var(--text-caption);
+  font-weight: 600;
+  letter-spacing: .06em;
+}
+
+.table td {
+  font-family: var(--font-content);
+  height: 49px;
+  border-top: 1px solid #f0f1f5;
+  color: #6f778c;
+  font-size: var(--text-label);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.tablePerson {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tablePerson > span,
+.schoolName {
+  display: grid;
+  gap: 3px;
+}
+
+.tablePerson strong,
+.schoolName strong,
+.tableStrong {
+  color: #444b61;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.studentLink {
+  color: #444b61;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.studentLink:hover {
+  color: #5368ea;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.tablePerson small,
+.schoolName small {
+  color: #999faf;
+  font-size: 13px;
+}
+
+.schoolName {
+  gap: 4px;
+}
+
+.rateValue {
+  color: #348e68;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.reportAction {
+  color: #586fe6;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.metricsGrid + .panel {
+  margin-top: 2px;
+}
+
+.settingsCard {
+  margin-bottom: 14px;
+}
+
+.settingsCard > div:first-child {
+  padding-bottom: 14px;
+  border-bottom: 1px solid #f0f1f5;
+}
+
+.settingsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+  padding: 16px 0;
+}
+
+.settingsGrid label {
+  display: grid;
+  gap: 6px;
+  color: #646c82;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.settingsGrid input,
+.settingsGrid select {
+  width: 100%;
+  height: 34px;
+  padding: 0 9px;
+  border: 1px solid #e8eaf0;
+  border-radius: 5px;
+  background: #fff;
+  color: #454c62;
+  font-size: 12px;
+}
+
+.settingsSave {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 13px;
+  border-top: 1px solid #f0f1f5;
+}
+
+.settingsSave span {
+  color: #9299aa;
+  font-size: 12px;
+}
+
+.settingsSave button {
+  min-height: 40px;
+  padding: 0 15px;
+  border: 1px solid #4058df;
+  border-radius: 12px;
+  background: #4058df;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(48, 72, 202, .18);
+  font-size: 14px;
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+  transition: background .16s ease, box-shadow .16s ease, transform .16s ease;
+}
+
+.settingsSave button:hover:not(:disabled) {
+  background: #3048ca;
+  box-shadow: 0 5px 12px rgba(48, 72, 202, .24);
+  transform: translateY(-1px);
+}
+
+.settingsSave button:disabled {
+  opacity: .65;
+  cursor: wait;
+}
+
+.preference {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 13px 0 0;
+}
+
+.preference + .preference {
+  border-top: 1px solid #f0f1f5;
+}
+
+.preference > span {
+  display: grid;
+  gap: 4px;
+}
+
+.preference strong {
+  color: #444b61;
+  font-size: 12px;
+}
+
+.preference small {
+  color: #9299aa;
+  font-size: 12px;
+}
+
+.preference input {
+  accent-color: #566df1;
+}
+
+.roleList {
+  display: grid;
+  margin-top: 15px;
+}
+
+.roleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 13px 0;
+  border-top: 1px solid #eff1f6;
+}
+
+.roleRow > div {
+  display: grid;
+  gap: 4px;
+}
+
+.roleRow strong {
+  color: #414860;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.roleRow span:not([class]) {
+  color: #7e869a;
+  font-size: 12px;
+}
+
+.permissionsNote {
+  margin: 14px 0 0;
+  padding: 11px 12px;
+  border-radius: 7px;
+  background: #f7f8ff;
+  color: #6975af;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.attendanceAlert {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 15px;
+  padding: 12px 15px;
+  border: 1px solid #f3dfb2;
+  border-radius: 8px;
+  background: #fffaf0;
+  color: #755619;
+}
+
+.alertIcon {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff0c8;
+  color: #a76e12;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.attendanceAlert > div {
+  min-width: 0;
+  flex: 1;
+}
+
+.attendanceAlert strong {
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.attendanceAlert p {
+  margin: 3px 0 0;
+  color: #92733b;
+  font-size: 12px;
+}
+
+.attendanceAlert > a,
+.panelHeading > a {
+  flex: 0 0 auto;
+  color: #586ff0;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.dashboardTableScroll {
+  margin-top: 13px;
+  overflow-x: auto;
+}
+
+.dashboardTable {
+  width: 100%;
+  min-width: 490px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.dashboardTable th {
+  font-family: var(--font-ui);
+  height: 35px;
+  color: #989faf;
+  font-size: var(--text-caption);
+  font-weight: 600;
+  letter-spacing: .06em;
+}
+
+.dashboardTable td {
+  font-family: var(--font-content);
+  height: 48px;
+  border-top: 1px solid #f0f1f5;
+  color: #6f778c;
+  font-size: var(--text-label);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.dashboardTable td:first-child {
+  min-width: 128px;
+  white-space: normal;
+}
+
+.dashboardTable td strong,
+.dashboardTable td small {
+  display: block;
+}
+
+.dashboardTable td strong {
+  color: #444b61;
+  font-size: var(--text-label);
+  font-weight: 600;
+}
+
+.dashboardTable td small {
+  margin-top: 3px;
+  color: #9299aa;
+  font-size: var(--text-caption);
+}
+
+.feeSummary {
+  padding-top: 16px;
+}
+
+.feeTotal {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.feeTotal strong {
+  color: #30364e;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -.5px;
+}
+
+.feeTotal span {
+  color: #9299aa;
+  font-size: 12px;
+}
+
+.feeProgress {
+  height: 8px;
+  margin: 12px 0;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #eff0f5;
+}
+
+.feeProgress > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #6678f3, #8b72e8);
+}
+
+.feeLegend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 14px;
+  margin-bottom: 12px;
+}
+
+.feeLegend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #81889a;
+  font-size: 12px;
+}
+
+.feeLegend strong {
+  color: #454c62;
+  font-weight: 600;
+}
+
+.feeLegend i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.paidDot {
+  background: #49aa7b;
+}
+
+.dueDot {
+  background: #efa84a;
+}
+
+.feeRows {
+  display: grid;
+}
+
+.feeRow {
+  display: flex;
+  min-width: 0;
+  min-height: 49px;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid #f0f1f5;
+}
+
+.feeRowInfo {
+  display: grid;
+  min-width: 0;
+  flex: 1;
+  gap: 3px;
+}
+
+.feeRowInfo strong {
+  overflow: hidden;
+  color: #444b61;
+  font-size: 12px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.feeRowInfo small {
+  color: #9299aa;
+  font-size: 11px;
+}
+
+.feeRowAmount {
+  color: #555d73;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.platformNotices {
+  display: grid;
+  margin-top: 12px;
+}
+
+.platformNotices > div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 64px;
+  border-top: 1px solid #f0f1f5;
+}
+
+.noticeIcon,
+.classroomIcon,
+.reportIcon {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.noticeWarning {
+  background: #fff5df;
+  color: #c28a2e;
+}
+
+.noticeSuccess {
+  background: #eaf8f1;
+  color: #37966d;
+}
+
+.platformNotices p {
+  display: grid;
+  min-width: 0;
+  flex: 1;
+  gap: 4px;
+  margin: 0;
+}
+
+.platformNotices p strong {
+  color: #444b61;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.platformNotices p small {
+  color: #9299aa;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.classroomList,
+.reportList {
+  display: grid;
+  margin-top: 12px;
+}
+
+.classroomRow,
+.reportList > div {
+  display: flex;
+  min-width: 0;
+  min-height: 55px;
+  align-items: center;
+  gap: 9px;
+  border-top: 1px solid #f0f1f5;
+}
+
+.classroomIcon,
+.reportIcon {
+  background: #f0efff;
+  color: #6d64d6;
+}
+
+.classroomRow > span:nth-child(2),
+.reportList > div > span:nth-child(2) {
+  display: grid;
+  min-width: 0;
+  flex: 1;
+  gap: 4px;
+}
+
+.classroomRow strong,
+.reportList strong {
+  overflow: hidden;
+  color: #444b61;
+  font-size: 12px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.classroomRow small,
+.reportList small {
+  color: #9299aa;
+  font-size: 11px;
+}
+
+.attendanceWatch {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.attendanceWatch > div {
+  display: grid;
+  gap: 6px;
+  padding: 11px;
+  border: 1px solid #eff0f5;
+  border-radius: 7px;
+}
+
+.attendanceWatch span,
+.attendanceWatch small {
+  color: #9299aa;
+  font-size: 11px;
+}
+
+.attendanceWatch strong {
+  color: #329169;
+  font-size: 20px;
+}
+
+.reportList > div {
+  min-height: 58px;
+}
+
+@media (max-width: 1020px) {
+  .metricsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboardGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .dashboardGrid {
+    gap: 10px;
+  }
+
+  .quickLinks {
+    grid-template-columns: 1fr;
+  }
+
+  .attendanceAlert {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .attendanceAlert > a {
+    margin-left: 42px;
+  }
+}
+
+@media (max-width: 470px) {
+  .metricsGrid {
+    gap: 8px;
+  }
+
+  .panel,
+  .settingsCard {
+    padding: 13px 11px;
+  }
+
+  .roleSelectLabel select {
+    min-width: min(250px, 100%);
+  }
+
+  .settingsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .roleRow {
+    align-items: flex-start;
+  }
+
+  .feeRow {
+    gap: 6px;
+  }
+
+  .attendanceWatch {
+    grid-template-columns: 1fr;
+  }
+}

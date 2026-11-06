@@ -1,0 +1,116 @@
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.portalGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(300px, .85fr);
+  gap: 16px;
+}
+
+.actionList {
+  display: grid;
+  margin-top: 12px;
+}
+
+.actionItem {
+  display: flex;
+  min-width: 0;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 0;
+  border-top: 1px solid #eff1f6;
+}
+
+.actionBody {
+  display: grid;
+  min-width: 0;
+  gap: 5px;
+}
+
+.actionBody strong {
+  color: #333a53;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.actionBody p {
+  margin: 0;
+  color: #697188;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.actionBody > span {
+  color: #8a91a3;
+  font-size: 13px;
+}
+
+.portalHint {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 18px;
+  padding: 16px 18px;
+  border: 1px solid #e8eafc;
+  border-radius: 10px;
+  background: linear-gradient(110deg, #f7f8ff, #fff);
+  color: #6471b1;
+}
+
+.portalHint > span {
+  color: #6776e4;
+  font-size: 18px;
+}
+
+.portalHint p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.portalHint strong {
+  color: #48558f;
+}
+
+.personCell {
+  display: grid;
+  gap: 3px;
+}
+
+.personCell strong {
+  color: #424961;
+  font-weight: 600;
+}
+
+.personCell small {
+  color: #858da0;
+  font-size: 13px;
+}
+
+.amount {
+  color: #30364e;
+  font-weight: 600;
+}
+
+@media (max-width: 1000px) {
+  .metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .portalGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 440px) {
+  .metrics {
+    gap: 9px;
+  }
+}

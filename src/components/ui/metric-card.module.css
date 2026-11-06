@@ -1,0 +1,84 @@
+.card {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #e9ebf2;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: var(--surface-shadow);
+}
+
+.top {
+  display: flex;
+  min-height: 32px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  color: #697188;
+  font-size: var(--text-body);
+}
+
+.icon {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 9px;
+}
+
+.blue {
+  background: #edf2ff;
+  color: #5770e5;
+}
+
+.violet {
+  background: #f0edff;
+  color: #765fe0;
+}
+
+.green {
+  background: #eaf8f1;
+  color: #34946b;
+}
+
+.orange {
+  background: #fff3e8;
+  color: #dc884a;
+}
+
+.value {
+  display: block;
+  margin: 13px 0 9px;
+  color: #252b45;
+  font-size: clamp(24px, 2.4vw, 28px);
+  font-weight: var(--weight-bold);
+  letter-spacing: -.7px;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  color: #777f94;
+  font-size: var(--text-label);
+}
+
+.positive,
+.negative {
+  padding: 4px 6px;
+  border-radius: 5px;
+  font-weight: var(--weight-semibold);
+}
+
+.positive {
+  background: #eaf8f1;
+  color: #328d65;
+}
+
+.negative {
+  background: #fff2e8;
+  color: #c97b42;
+}
