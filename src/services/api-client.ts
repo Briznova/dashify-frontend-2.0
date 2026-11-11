@@ -1,3 +1,5 @@
+import { getAccessToken } from "@/services/auth-token";
+
 export class ApiError extends Error {
   constructor(
     message: string,
@@ -27,6 +29,10 @@ export class ApiClient {
     if (options.body && !headers.has("Content-Type")) {
       headers.set("Content-Type", "application/json");
     }
+    const accessToken = getAccessToken();
+    if (accessToken && !headers.has("Authorization")) {
+      headers.set("Authorization", `Bearer ${accessToken}`);
+    }
 
     try {
       response = await fetch(`${this.baseUrl}${path}`, {
@@ -51,9 +57,10 @@ export class ApiClient {
           typeof body === "object" &&
           body !== null &&
           "message" in body &&
-          typeof body.message === "string"
+          (typeof body.message === "string" ||
+            (Array.isArray(body.message) && body.message.every((item) => typeof item === "string")))
         ) {
-          message = body.message;
+          message = Array.isArray(body.message) ? body.message.join(", ") : body.message;
         }
       } catch (error) {
         if (!(error instanceof SyntaxError)) {

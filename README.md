@@ -67,25 +67,18 @@ To switch the service implementations to the HTTP adapters:
 
 ```dotenv
 NEXT_PUBLIC_DASHIFY_API_MODE=api
-NEXT_PUBLIC_DASHIFY_API_BASE_URL=http://localhost:3001
+NEXT_PUBLIC_DASHIFY_API_BASE_URL=http://localhost:3001/api/v1
 ```
 
-Copy `.env.example` to `.env.local` and set the API URL for your backend. The adapters in `src/services/http/` currently expect:
+Copy `.env.example` to `.env.local`. The backend runs on port `3001` by default, while the Next.js frontend runs on port `3000`. In API mode, sign-in calls the backend login endpoint, selects the first active school membership, and stores the returned bearer and refresh tokens in browser storage according to “Remember this device.” Session checks and API requests use the scoped bearer token; sign-out revokes the refresh token.
 
-- `POST /auth/sign-in`
-- `POST /auth/sign-up`
-- `GET /auth/session` (returns the current user or `401`)
-- `POST /auth/password-reset/request`
-- `POST /auth/password-reset/confirm` (accepts the reset token)
-- `POST /auth/sign-out`
-- `GET /school/dashboard?role=...`
-- `GET /school/portal-dashboard?role=teacher|accountant|parent|student`
-- `GET /school/students`, `POST /school/students`, `PUT /school/students/:id`
-- `GET /school/staff`, `/school/classrooms`, `/school/attendance`, `/school/reports`, `/school/fees`, and `/school/assignments`
-- `GET /schools`
-- `GET /school/settings` and `PUT /school/settings`
+The current frontend/backend contract is intentionally explicit:
 
-Successful endpoints return JSON matching the types in `src/types/`. Password-reset request and confirmation may return `204 No Content`. The HTTP client includes credentials so the auth API can set an `HttpOnly`, `Secure`, `SameSite` session cookie; configure CORS accordingly when the API is on another origin. Adjust the small HTTP adapters if your backend uses different paths or response shapes; UI components and hooks can remain unchanged. Production auth must be implemented and enforced by a trusted server/API, not the browser mock.
+- **Integrated:** backend login, active school selection, current-user session check, logout, and paginated student-directory reads.
+- **Not yet implemented/aligned:** sign-up, password reset, dashboard summaries, student create/update form requirements, staff, school directory, classroom presentation fields, attendance summaries, reports, finance, assignments, and settings. API mode surfaces a clear “not implemented” error for these instead of silently falling back to demo data.
+- Backend routes and request/response types are documented in the backend Swagger UI at `http://localhost:3001/docs`.
+
+The backend seed account is `admin@dashify.test` / `ChangeMe-Local-Only-2026`; it is separate from the mock preview accounts. Start the backend using its README setup steps and ensure its `.env` has `PORT=3001` and `WEB_APP_ORIGIN=http://localhost:3000`. Successful API responses are mapped at the HTTP service boundary; React components continue consuming the existing frontend types. Production auth and data access must be enforced by the trusted backend, not frontend role checks.
 
 The key boundaries are:
 
