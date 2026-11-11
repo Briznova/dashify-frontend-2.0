@@ -41,6 +41,8 @@ Open [http://localhost:3000](http://localhost:3000).
 - **Principal** — classroom activity, attendance trends, academic reports, and leadership priorities.
 - **Teacher, Accountant, Parent, and Student** — focused teaching, finance, family, and learning workspaces.
 
+The dashboard uses a central UI access policy in `src/modules/access/` to keep role home routing, navigation, and route checks aligned. The access layer defines role capabilities and home destinations, while the workspace modules under `src/modules/workspace/` keep landing experiences and portal-specific composition separate from the shared domain screens.
+
 The sidebar profile stays visible at the lower-left on desktop and shows the signed-in user and role. Open it to view the account email, workspace settings (where available), or sign out.
 
 The dashboard top bar includes role-scoped page search (`Ctrl+K` / `⌘K`, or the search button on mobile) and contextual notifications with direct links to relevant workspace pages.

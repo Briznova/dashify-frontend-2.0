@@ -6,76 +6,9 @@ import { useEffect, useState, type ReactNode } from "react";
 import styles from "./dashboard-shell.module.css";
 import { useAuth, useAuthSession } from "@/hooks/use-auth";
 import { getDashboardRoute } from "@/lib/dashboard-route";
-import type { UserRole } from "@/types/auth";
-import { Icon, type IconName } from "./ui/icon";
-
-type NavigationItem = { label: string; href: string; icon: IconName };
-
-const schoolNavigation = [
-  { label: "Overview", href: "/dashboard", icon: "layoutDashboard" },
-  { label: "Schools", href: "/dashboard/schools", icon: "building" },
-  { label: "Students", href: "/dashboard/students", icon: "users" },
-  { label: "Staff", href: "/dashboard/staff", icon: "user" },
-  { label: "Classes", href: "/dashboard/classes", icon: "book" },
-  { label: "Attendance", href: "/dashboard/attendance", icon: "calendarCheck" },
-  { label: "Fees", href: "/dashboard/fees", icon: "wallet" },
-  { label: "Academics", href: "/dashboard/academics", icon: "graduationCap" },
-  { label: "Analytics", href: "/dashboard/analytics", icon: "chart" },
-  { label: "Reports", href: "/dashboard/reports", icon: "file" },
-] satisfies NavigationItem[];
-
-const navigationByRole: Record<UserRole, NavigationItem[]> = {
-  super_admin: schoolNavigation,
-  school_admin: schoolNavigation.filter((item) => item.href !== "/dashboard/schools"),
-  principal: schoolNavigation.filter((item) => item.href !== "/dashboard/schools"),
-  teacher: [
-    schoolNavigation[0],
-    { label: "My teaching day", href: "/dashboard/teacher", icon: "user" },
-    schoolNavigation[4],
-    schoolNavigation[5],
-    schoolNavigation[7],
-  ],
-  accountant: [
-    schoolNavigation[0],
-    { label: "Finance overview", href: "/dashboard/accountant", icon: "wallet" },
-    schoolNavigation[6],
-    schoolNavigation[9],
-  ],
-  parent: [
-    schoolNavigation[0],
-    { label: "My child", href: "/dashboard/parent", icon: "home" },
-  ],
-  student: [
-    schoolNavigation[0],
-    { label: "My learning", href: "/dashboard/student", icon: "graduationCap" },
-    schoolNavigation[7],
-  ],
-};
-
-const portalRoutes: Partial<Record<UserRole, string>> = {
-  teacher: "/dashboard/teacher",
-  accountant: "/dashboard/accountant",
-  parent: "/dashboard/parent",
-  student: "/dashboard/student",
-};
-
-function isRouteAllowed(pathname: string, role: UserRole) {
-  const isSchoolAdministrator =
-    role === "super_admin" || role === "school_admin" || role === "principal";
-  if (pathname === "/dashboard/settings") return isSchoolAdministrator;
-
-  const normalizedPath = pathname === "/dashboard/customers"
-    ? "/dashboard/students"
-    : pathname === "/dashboard/projects"
-      ? "/dashboard/classes"
-      : pathname;
-  const allowed = navigationByRole[role].some((item) =>
-    normalizedPath === item.href ||
-    (item.href !== "/dashboard" && normalizedPath.startsWith(`${item.href}/`)),
-  );
-  if (allowed) return true;
-  return Object.values(portalRoutes).includes(pathname) && portalRoutes[role] === pathname;
-}
+import { getRoleNavigation, isRouteAllowed } from "@/modules/access";
+import type { UserRole } from "@/modules/access";
+import { Icon } from "./ui/icon";
 
 function Logo() {
   return (
@@ -136,7 +69,7 @@ export function DashboardShell({ children }: Readonly<{ children: ReactNode }>) 
   const [notificationsRead, setNotificationsRead] = useState(false);
   const { signOut, isPending } = useAuth();
   const { session, isLoading: isSessionLoading, error: sessionError, refresh } = useAuthSession();
-  const navigation = session ? navigationByRole[session.user.role] : [];
+  const navigation = session ? getRoleNavigation(session.user.role) : [];
   const breadcrumbLabel = pathname === "/dashboard/settings"
       ? "Settings"
       : pathname === "/dashboard/customers"

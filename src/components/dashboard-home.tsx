@@ -1,9 +1,14 @@
 "use client";
 
-import { PortalDashboard } from "@/components/school-extras";
-import { SchoolDashboardView } from "@/components/school-dashboard";
 import { useAuthSession } from "@/hooks/use-auth";
-import type { SchoolRole } from "@/types/school";
+import type { UserRole } from "@/modules/access";
+import { SuperAdminWorkspace } from "@/modules/workspace/super-admin/workspace";
+import { SchoolAdminWorkspace } from "@/modules/workspace/school-admin/workspace";
+import { PrincipalWorkspace } from "@/modules/workspace/principal/workspace";
+import { TeacherWorkspace } from "@/modules/workspace/teacher/workspace";
+import { AccountantWorkspace } from "@/modules/workspace/accountant/workspace";
+import { ParentWorkspace } from "@/modules/workspace/parent/workspace";
+import { StudentWorkspace } from "@/modules/workspace/student/workspace";
 import styles from "./dashboard-shell.module.css";
 
 export function DashboardHome() {
@@ -17,17 +22,22 @@ export function DashboardHome() {
   }
   if (!session) return null;
 
-  switch (session.user.role) {
-    case "teacher":
-    case "accountant":
-    case "parent":
-    case "student":
-      return <PortalDashboard role={session.user.role} />;
+  const role: UserRole = session.user.role;
+
+  switch (role) {
     case "super_admin":
+      return <SuperAdminWorkspace userName={session.user.name} />;
     case "school_admin":
-    case "principal": {
-      const role: SchoolRole = session.user.role;
-      return <SchoolDashboardView role={role} userName={session.user.name} />;
-    }
+      return <SchoolAdminWorkspace userName={session.user.name} />;
+    case "principal":
+      return <PrincipalWorkspace userName={session.user.name} />;
+    case "teacher":
+      return <TeacherWorkspace />;
+    case "accountant":
+      return <AccountantWorkspace />;
+    case "parent":
+      return <ParentWorkspace />;
+    case "student":
+      return <StudentWorkspace />;
   }
 }
