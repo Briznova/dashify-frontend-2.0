@@ -1,4 +1,5 @@
 import type { ApiClient } from "@/services/api-client";
+import { ApiError } from "@/services/api-client";
 import type { SchoolService } from "@/services/school-service";
 import type {
   AcademicReport,
@@ -7,81 +8,121 @@ import type {
   Classroom,
   FeeRecord,
   PortalOverview,
-  PortalRole,
   School,
   SchoolOverview,
-  SchoolRole,
   SchoolSettingsData,
   StaffMember,
   Student,
-  StudentInput,
 } from "@/types/school";
 
 export class HttpSchoolService implements SchoolService {
   constructor(private readonly api: ApiClient) {}
 
-  getOverview(role: SchoolRole, signal?: AbortSignal): Promise<SchoolOverview> {
-    return this.api.request(`/school/dashboard?role=${encodeURIComponent(role)}`, {}, signal);
+  async getOverview(): Promise<SchoolOverview> {
+    throw new ApiError("Dashboard summaries are not implemented by the backend yet.", 501);
   }
 
-  getPortalOverview(role: PortalRole, signal?: AbortSignal): Promise<PortalOverview> {
-    return this.api.request(`/school/portal-dashboard?role=${encodeURIComponent(role)}`, {}, signal);
+  async getPortalOverview(): Promise<PortalOverview> {
+    throw new ApiError("Role portal summaries are not implemented by the backend yet.", 501);
   }
 
-  getStudents(signal?: AbortSignal): Promise<Student[]> {
-    return this.api.request("/school/students", {}, signal);
+  async getStudents(signal?: AbortSignal): Promise<Student[]> {
+    type StudentPage = {
+      data: {
+        id: string;
+        admissionNumber: string;
+        firstName: string;
+        middleName: string | null;
+        lastName: string | null;
+        status: "ACTIVE" | "INACTIVE" | "ARCHIVED";
+        guardians: { isPrimary: boolean; guardian: { firstName: string; lastName: string | null } }[];
+        enrolments: {
+          isActive: boolean;
+          section: { name: string; class: { name: string } };
+        }[];
+      }[];
+      meta: { page: number; totalPages: number };
+    };
+
+    const students: Student[] = [];
+    let page = 1;
+    let totalPages = 1;
+    do {
+      const result = await this.api.request<StudentPage>(
+        `/students?page=${page}&pageSize=100`,
+        {},
+        signal,
+      );
+      students.push(...result.data.map((student): Student => {
+        const enrolment = student.enrolments.find((entry) => entry.isActive)
+          ?? student.enrolments[0];
+        const guardian = student.guardians.find((entry) => entry.isPrimary)
+          ?? student.guardians[0];
+        return {
+          id: student.id,
+          name: [student.firstName, student.middleName, student.lastName].filter(Boolean).join(" "),
+          studentNumber: student.admissionNumber,
+          grade: enrolment
+            ? `${enrolment.section.class.name} · ${enrolment.section.name}`
+            : "Not enrolled",
+          guardian: guardian
+            ? [guardian.guardian.firstName, guardian.guardian.lastName].filter(Boolean).join(" ")
+            : "—",
+          attendance: "—",
+          status: student.status === "INACTIVE" ? "On leave" : "Active",
+        };
+      }));
+      totalPages = result.meta.totalPages;
+      page += 1;
+    } while (page <= totalPages);
+
+    return students;
   }
 
-  createStudent(input: StudentInput): Promise<Student> {
-    return this.api.request("/school/students", {
-      method: "POST",
-      body: JSON.stringify(input),
-    });
+  async createStudent(): Promise<Student> {
+    throw new ApiError(
+      "Student creation needs admission, academic year, class, section, and guardian details that this form does not collect yet.",
+      501,
+    );
   }
 
-  updateStudent(id: string, input: StudentInput): Promise<Student> {
-    return this.api.request(`/school/students/${encodeURIComponent(id)}`, {
-      method: "PUT",
-      body: JSON.stringify(input),
-    });
+  async updateStudent(): Promise<Student> {
+    throw new ApiError("Student profile updates are not implemented by the backend yet.", 501);
   }
 
-  getStaff(signal?: AbortSignal): Promise<StaffMember[]> {
-    return this.api.request("/school/staff", {}, signal);
+  async getStaff(): Promise<StaffMember[]> {
+    throw new ApiError("Staff directory endpoints are not implemented by the backend yet.", 501);
   }
 
-  getClassrooms(signal?: AbortSignal): Promise<Classroom[]> {
-    return this.api.request("/school/classrooms", {}, signal);
+  async getClassrooms(): Promise<Classroom[]> {
+    throw new ApiError("The backend class API does not yet provide the classroom fields required by this view.", 501);
   }
 
-  getSchools(signal?: AbortSignal): Promise<School[]> {
-    return this.api.request("/schools", {}, signal);
+  async getSchools(): Promise<School[]> {
+    throw new ApiError("A school directory endpoint is not implemented by the backend yet.", 501);
   }
 
-  getAttendance(signal?: AbortSignal): Promise<AttendanceRecord[]> {
-    return this.api.request("/school/attendance", {}, signal);
+  async getAttendance(): Promise<AttendanceRecord[]> {
+    throw new ApiError("Attendance summary endpoints are not implemented by the backend yet.", 501);
   }
 
-  getReports(signal?: AbortSignal): Promise<AcademicReport[]> {
-    return this.api.request("/school/reports", {}, signal);
+  async getReports(): Promise<AcademicReport[]> {
+    throw new ApiError("Reporting endpoints are not implemented by the backend yet.", 501);
   }
 
-  getFees(signal?: AbortSignal): Promise<FeeRecord[]> {
-    return this.api.request("/school/fees", {}, signal);
+  async getFees(): Promise<FeeRecord[]> {
+    throw new ApiError("Finance endpoints are not implemented by the backend yet.", 501);
   }
 
-  getAssignments(signal?: AbortSignal): Promise<Assignment[]> {
-    return this.api.request("/school/assignments", {}, signal);
+  async getAssignments(): Promise<Assignment[]> {
+    throw new ApiError("Assignment endpoints are not implemented by the backend yet.", 501);
   }
 
-  getSettings(signal?: AbortSignal): Promise<SchoolSettingsData> {
-    return this.api.request("/school/settings", {}, signal);
+  async getSettings(): Promise<SchoolSettingsData> {
+    throw new ApiError("School settings fields are not yet aligned with the backend school profile.", 501);
   }
 
-  updateSettings(settings: SchoolSettingsData): Promise<SchoolSettingsData> {
-    return this.api.request("/school/settings", {
-      method: "PUT",
-      body: JSON.stringify(settings),
-    });
+  async updateSettings(): Promise<SchoolSettingsData> {
+    throw new ApiError("School settings fields are not yet aligned with the backend school profile.", 501);
   }
 }
